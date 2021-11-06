@@ -4,7 +4,16 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Statistics {
+    public static void weightedMean(List<Integer> X, List<Integer> W) {
+        double totalWeight = W.stream().mapToDouble(v -> v).sum();
+        double productWX = 0;
 
+        for (int i = 0; i < X.size(); i++) {
+            double calc = X.get(i) * W.get(i);
+            productWX += calc;
+        }
+        System.out.printf("%.1f",productWX/totalWeight);
+    }
     public static float median(int[] numbers){
         List<Integer> list = Arrays.stream(numbers)        // IntStream
                                     .boxed()          // Stream<Integer>
