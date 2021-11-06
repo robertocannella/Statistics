@@ -4,6 +4,28 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Statistics {
+    public static List<Integer> quartiles(List<Integer> arr) {
+        // Write your code here
+        List<Integer> Qs = new ArrayList<>();
+        Collections.sort(arr);
+        if (arr.size()%2 == 0){
+            List<Integer> lower = new ArrayList<>(arr.subList(0,arr.size()/2));
+            List<Integer> upper = new ArrayList<>(arr.subList(arr.size()/2,arr.size()));
+            Qs.add((int)median(lower));
+            Qs.add((int)median(arr));
+            Qs.add((int)median(upper));
+
+            return Qs;
+        }
+
+        List<Integer> lower = new ArrayList<>(arr.subList(0,arr.size()/2));
+        List<Integer> upper = new ArrayList<>(arr.subList(arr.size()/2 + 1,arr.size()));
+        Qs.add((int)median(lower));
+        Qs.add((int)median(arr));
+        Qs.add((int)median(upper));
+
+        return Qs;
+    }
     public static void weightedMean(List<Integer> X, List<Integer> W) {
         double totalWeight = W.stream().mapToDouble(v -> v).sum();
         double productWX = 0;
@@ -13,6 +35,15 @@ public class Statistics {
             productWX += calc;
         }
         System.out.printf("%.1f",productWX/totalWeight);
+    }
+    public static float median(List<Integer> arr){
+        Collections.sort(arr);
+        if (arr.size()%2 ==0){
+            int value1 = arr.get(arr.size()/2);
+            int value2 = arr.get((arr.size()/2)-1);
+            return ((float)(value1+value2)/2);
+        }
+        return arr.get(arr.size()/2);
     }
     public static float median(int[] numbers){
         List<Integer> list = Arrays.stream(numbers)        // IntStream
