@@ -17,13 +17,17 @@ public class Main {
 
         int n = Integer.parseInt(bufferedReader.readLine().trim());
 
-        List<Integer> data = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+        List<Integer> val = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
                 .map(Integer::parseInt)
                 .collect(toList());
 
-        List<Integer> res = Statistics.quartiles(data);
+        List<Integer> freq = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+                .map(Integer::parseInt)
+                .collect(toList());
 
-        System.out.println(res);
+        Statistics.interQuartile(val, freq);
+
+        bufferedReader.close();
 
     }
 

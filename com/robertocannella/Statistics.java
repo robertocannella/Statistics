@@ -4,25 +4,39 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Statistics {
-    public static List<Integer> quartiles(List<Integer> arr) {
+    public static void interQuartile(List<Integer> values, List<Integer> freqs) {
+        // Print your answer to 1 decimal place within this function
+        List<Integer> arr = new ArrayList<>();
+
+        for (int i = 0; i < freqs.size(); i++) {
+            for (int j = 0; j < freqs.get(i) ; j++) {
+                arr.add(values.get(i));
+            }
+        }
+        List<Float> quartiles = quartiles(arr);
+
+        System.out.println((float)quartiles.get(2)-quartiles.get(0));
+
+    }
+    public static List<Float> quartiles(List<Integer> arr) {
         // Write your code here
-        List<Integer> Qs = new ArrayList<>();
+        List<Float> Qs = new ArrayList<>();
         Collections.sort(arr);
         if (arr.size()%2 == 0){
             List<Integer> lower = new ArrayList<>(arr.subList(0,arr.size()/2));
             List<Integer> upper = new ArrayList<>(arr.subList(arr.size()/2,arr.size()));
-            Qs.add((int)median(lower));
-            Qs.add((int)median(arr));
-            Qs.add((int)median(upper));
+            Qs.add((float)median(lower));
+            Qs.add((float)median(arr));
+            Qs.add((float)median(upper));
 
             return Qs;
         }
 
         List<Integer> lower = new ArrayList<>(arr.subList(0,arr.size()/2));
         List<Integer> upper = new ArrayList<>(arr.subList(arr.size()/2 + 1,arr.size()));
-        Qs.add((int)median(lower));
-        Qs.add((int)median(arr));
-        Qs.add((int)median(upper));
+        Qs.add((float)median(lower));
+        Qs.add((float)median(arr));
+        Qs.add((float)median(upper));
 
         return Qs;
     }
@@ -45,6 +59,7 @@ public class Statistics {
         }
         return arr.get(arr.size()/2);
     }
+
     public static float median(int[] numbers){
         List<Integer> list = Arrays.stream(numbers)        // IntStream
                                     .boxed()          // Stream<Integer>
