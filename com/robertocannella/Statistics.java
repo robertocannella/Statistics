@@ -4,6 +4,20 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Statistics {
+    public static void stdDev(List<Integer> arr) {
+        // Print your answers to 1 decimal place within this function
+        double sum = 0.0;
+        for (int i = 0; i < arr.size(); i++)
+            sum += arr.get(i);
+
+        double mean = sum/arr.size();
+        double varianceSum = 0.0;
+        for (int i = 0; i < arr.size(); i++)
+            varianceSum += ((arr.get(i) - mean) * (arr.get(i) - mean));
+
+        double variance = varianceSum/arr.size();
+        System.out.printf("%.1f",Math.sqrt(variance));
+    }
     public static void interQuartile(List<Integer> values, List<Integer> freqs) {
         // Print your answer to 1 decimal place within this function
         List<Integer> arr = new ArrayList<>();
