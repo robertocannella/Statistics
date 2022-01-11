@@ -13,17 +13,8 @@ import static java.util.stream.Collectors.toList;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-
-        int n = Integer.parseInt(bufferedReader.readLine().trim());
-
-        List<Integer> vals = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                .map(Integer::parseInt)
-                .collect(toList());
-
-        Statistics.stdDev(vals);
-
-        bufferedReader.close();
+        double anse = Statistics.BinomialDistribution(1.09,1);
+        System.out.println(anse);
     }
 
 

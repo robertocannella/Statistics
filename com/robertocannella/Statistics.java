@@ -4,6 +4,27 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Statistics {
+    public static double BinomialDistribution(double r,double c) {
+//The ratio of boys to girls for babies born in Russia is . If there is  child born per birth,
+// what proportion of Russian families with exactly  children will have at least  boys?
+
+        double b = r / (r + c);
+        int x = 6;
+        double prob = 0;
+
+        for (int i = 3; i <= x; i++)
+            prob += Math.pow(b, i) * Math.pow(1 - b, x - i) / (factorial(i) * factorial(x - i));
+        return factorial(x) * prob;
+
+    }
+
+    private static int factorial(int n){
+//        if (n==0)
+//            return 1;
+
+//        return n * factorial(n-1);
+        return n==0 ? 1 : n*factorial(n-1);
+    }
     public static void stdDev(List<Integer> arr) {
         // Print your answers to 1 decimal place within this function
         double sum = 0.0;
